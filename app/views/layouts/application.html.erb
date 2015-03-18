@@ -3,14 +3,18 @@
 <head>
   <title>PhotoShare</title>
   <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
-<body>
-<%= flash[:alert] %>
-<%= flash[:notice] %>
-<%= yield %>
 
+<body>
+  <div class="container">
+    <%= flash[:alert] %>
+    <%= flash[:notice] %>
+    <%= yield %>
+
+  </div>
 </body>
 </html>
