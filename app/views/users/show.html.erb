@@ -3,3 +3,7 @@
 <%= image_tag @user.avatar.url %>
 <%= image_tag @user.avatar.url(:medium) %>
 <%= image_tag @user.avatar.url(:thumb) %>
+
+
+
+<%= link_to 'Add Photo', new_user_photo_path(@user) %>
