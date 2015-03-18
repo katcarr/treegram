@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 describe User do
+  it {should have_many :photos}
   describe '#is_email?' do
     it ('will return true if @ and . are in email') do
       user = User.create({email: 'john@john.com', password: 'reallybadpassword'})
