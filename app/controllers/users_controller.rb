@@ -1,7 +1,10 @@
 class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
-    if @user.save
+    if !@user.is_email?
+      flash[:alert] = "Input a properly formatted email."
+      redirect_to :back
+    elsif @user.save
       flash[:notice]= "Welcome to the site!"
       redirect_to '/'
     else
@@ -11,6 +14,10 @@ class UsersController < ApplicationController
   end
 
   def new
+  end
+
+  def show
+    @user = User.find(params[:id])
   end
 
   private
