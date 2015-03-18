@@ -1,4 +1,15 @@
 class User<ActiveRecord::Base
-  validates :username, :presence => true
+  attr_accessor :password
+  validates_confirmation_of :password
+  before_save :encrypt_password
 
+  validates :email, :presence => true
+  def encrypt_password
+    self.password_salt = BCrypt::Engine.generate_salt
+    self.password_hash = BCrypt::Engine.hash_secret(password, password_salt)
+  end
+
+  def self.authenticate(email, password)
+
+  end
 end
