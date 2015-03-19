@@ -31,8 +31,8 @@
 
   <%= form_for @tag do |f| %>
     <%= f.hidden_field :photo_id, value: photo.id %>
-    <%= f.collection_select :user_id, @users, :id, :email, prompt: 'Tag User'  %>
-    <%= f.submit "Tag" %>
+    <%= f.collection_select :user_id, @users, :id, :email %>
+    <%= f.submit "Tag User" %>
   <% end %>
 
   <% photo.tags.each do |tag| %>
