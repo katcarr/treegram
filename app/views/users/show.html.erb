@@ -28,11 +28,17 @@
 
 <div class="well col-sm-4">
   <%= image_tag photo.image.url(:medium) %>
-  <select name="user_id">
-    <% @users.each do |u| %>
-      <option value = "<%= u.id %>" >  <%= u.email %> </option>
-      <% end %>
-  </select>
+
+  <%= form_for @tag do |f| %>
+    <%= f.hidden_field :photo_id, value: photo.id %>
+    <%= f.collection_select :user_id, @users, :id, :email, prompt: 'Tag User'  %>
+    <%= f.submit "Tag" %>
+  <% end %>
+
+  <% photo.tags.each do |tag| %>
+    <%= tag.user.email %>
+  <% end %>
+
 </div>
 <% end %>
 
