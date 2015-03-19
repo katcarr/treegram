@@ -28,6 +28,11 @@
 
 <div class="well col-sm-4">
   <%= image_tag photo.image.url(:medium) %>
+  <select name="user_id">
+    <% @users.each do |u| %>
+      <option value = "<%= u.id %>" >  <%= u.email %> </option>
+      <% end %>
+  </select>
 </div>
 <% end %>
 
