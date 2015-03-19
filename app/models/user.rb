@@ -5,6 +5,7 @@ class User<ActiveRecord::Base
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
   validates_confirmation_of :password
   before_save :encrypt_password
+  validates :email, uniqueness: true
 
   validates :email, :presence => true
   def encrypt_password

@@ -13,4 +13,5 @@ describe User do
       expect(user.is_email?).to eq false
     end
   end
+
 end

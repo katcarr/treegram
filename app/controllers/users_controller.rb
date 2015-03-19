@@ -4,6 +4,9 @@ class UsersController < ApplicationController
     if !@user.is_email?
       flash[:alert] = "Input a properly formatted email."
       redirect_to :back
+    elsif !@user.valid?
+      flash[:notice]= "That email " + @user.errors.messages[:email].first
+      redirect_to :back
     elsif @user.save
       flash[:notice]= "Welcome to the site!"
       redirect_to user_path(@user)

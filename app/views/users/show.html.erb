@@ -1,5 +1,5 @@
 <%= @user.email %>
-<% if !@user.avatar==nil %>
+<% if @user.avatar_file_name %>
   <%= image_tag @user.avatar.url(:thumb) %>
 <% end %>
 

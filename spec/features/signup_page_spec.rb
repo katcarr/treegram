@@ -16,4 +16,31 @@ describe "Test the sign-up process" do
     expect(page).to have_content "Welcome"
   end
 
+  it "gives error message if email does not have a @ and ." do
+    visit '/users/new'
+    fill_in "Email", :with => "k@k"
+    fill_in "Password", :with => "123"
+    fill_in "Password confirmation", :with => "123"
+    click_on 'Sign Up'
+    expect(page).to have_content "Input a properly formatted"
+  end
+
+  it "gives error message if email does not have a @ and ." do
+    visit '/users/new'
+    fill_in "Email", :with => "k#k.com"
+    fill_in "Password", :with => "123"
+    fill_in "Password confirmation", :with => "123"
+    click_on 'Sign Up'
+    expect(page).to have_content "Input a properly formatted"
+  end
+
+  it "gives error message if password confirmation is different from password" do
+    visit '/users/new'
+    fill_in "Email", :with => "k@k.com"
+    fill_in "Password", :with => "123"
+    fill_in "Password confirmation", :with => "1234"
+    click_on 'Sign Up'
+    expect(page).to have_content "was a problem"
+  end
+
 end
