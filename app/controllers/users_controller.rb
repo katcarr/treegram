@@ -1,10 +1,11 @@
 class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
+    @user.valid?
     if !@user.is_email?
       flash[:alert] = "Input a properly formatted email."
       redirect_to :back
-    elsif !@user.valid?
+    elsif @user.errors.messages[:email] != nil
       flash[:notice]= "That email " + @user.errors.messages[:email].first
       redirect_to :back
     elsif @user.save

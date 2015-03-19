@@ -43,4 +43,14 @@ describe "Test the sign-up process" do
     expect(page).to have_content "was a problem"
   end
 
+  it "gives error message if email is not unique" do
+    visit '/users/new'
+    User.create({email: "k@k.com", password: "123"})
+    fill_in "Email", :with => "k@k.com"
+    fill_in "Password", :with => "1234"
+    fill_in "Password confirmation", :with => "1234"
+    click_on 'Sign Up'
+    expect(page).to have_content "That email"
+  end
+
 end
